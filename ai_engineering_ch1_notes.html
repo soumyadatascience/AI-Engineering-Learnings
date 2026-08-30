@@ -1,0 +1,242 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Engineering — Chapter 1 Memory Notes</title>
+<style>
+:root{
+  --bg:#f7f8fc; --ink:#172033; --muted:#64748b; --line:#e5e7eb;
+  --indigo:#3730a3; --violet:#6d28d9; --soft:#eef2ff; --green:#ecfdf5;
+  --greenline:#a7f3d0; --amber:#fff7ed; --amberline:#fed7aa; --blue:#eff6ff;
+  --blueline:#bfdbfe;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.58}
+.page{max-width:1180px;margin:0 auto;padding:34px 24px 72px}
+.hero{background:linear-gradient(135deg,#172554,#312e81 55%,#5b21b6);color:white;border-radius:28px;padding:38px 42px;box-shadow:0 18px 48px rgba(30,41,59,.16)}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;opacity:.78}
+h1{font-size:44px;line-height:1.06;margin:8px 0 10px}
+h2{font-size:28px;line-height:1.2;margin:0 0 16px}
+h3{font-size:20px;margin:0 0 8px}
+.hero p{font-size:18px;max-width:830px;opacity:.92;margin:0}
+.section{margin-top:28px}
+.card{background:white;border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:0 5px 20px rgba(15,23,42,.045)}
+.bigidea{font-size:27px;font-weight:850;line-height:1.3;text-align:center;max-width:930px;margin:0 auto}
+.muted{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:16px}
+.flow{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;margin:18px 0}
+.node{background:var(--soft);border:1px solid #c7d2fe;color:#312e81;border-radius:14px;padding:14px 16px;font-weight:800;text-align:center;min-width:155px}
+.node.green{background:var(--green);border-color:var(--greenline);color:#065f46}
+.node.amber{background:var(--amber);border-color:var(--amberline);color:#9a3412}
+.arrow{font-size:24px;color:#6366f1;font-weight:900}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.compare{border-radius:18px;padding:20px;border:1px solid var(--line);background:#fff}
+.tag{display:inline-block;padding:5px 9px;border-radius:999px;background:var(--soft);color:#3730a3;font-size:12px;font-weight:800;margin:3px 5px 3px 0}
+.mental{background:var(--blue);border:1px solid var(--blueline);border-left:5px solid #3b82f6;border-radius:14px;padding:16px 18px;margin-top:14px}
+.work{background:var(--green);border-color:var(--greenline)}
+.warn{background:var(--amber);border-color:var(--amberline)}
+.kicker{font-size:13px;text-transform:uppercase;letter-spacing:.08em;font-weight:850;color:#6366f1;margin-bottom:8px}
+.timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;align-items:stretch}
+.t{background:white;border:1px solid var(--line);border-radius:16px;padding:18px;text-align:center;position:relative}
+.t b{display:block;font-size:16px;margin-bottom:5px}
+.t small{color:var(--muted)}
+.t:not(:last-child):after{content:"→";position:absolute;right:-16px;top:43%;font-size:22px;color:#6366f1;font-weight:900}
+ul{margin:8px 0 0 20px;padding:0} li{margin:6px 0}
+table{width:100%;border-collapse:collapse}
+th,td{padding:13px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:#64748b}
+.recall{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.r{background:white;border:1px solid var(--line);border-radius:14px;padding:16px}
+.num{font-size:12px;font-weight:900;color:#6366f1;letter-spacing:.08em}
+details{background:white;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:10px 0}
+summary{cursor:pointer;font-weight:800}
+.footer{text-align:center;margin-top:34px;color:#94a3b8;font-size:13px}
+@media(max-width:820px){
+  h1{font-size:36px}.hero{padding:30px 26px}.two,.recall{grid-template-columns:1fr}.timeline{grid-template-columns:1fr}
+  .t:not(:last-child):after{content:"↓";right:49%;top:auto;bottom:-23px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<section class="hero">
+  <div class="eyebrow">AI Engineering · Chapter 1</div>
+  <h1>From Language Models to AI Engineering</h1>
+  <p>A memory-first chapter note built around the concepts that actually stuck: how language models evolved, why self-supervision and scaling mattered, how foundation models changed the application landscape, and where AI engineering fits.</p>
+</section>
+
+<section class="section card">
+  <div class="kicker">The chapter in one sentence</div>
+  <p class="bigidea">Language modeling evolved from task-specific approaches into large, general-purpose foundation models, which shifted a major part of the challenge from “train the model” to “engineer the application around the model.”</p>
+</section>
+
+<section class="section card">
+  <h2>1. The evolution I should remember</h2>
+  <div class="timeline">
+    <div class="t"><b>Language Models</b><small>Learn patterns in sequences of language.</small></div>
+    <div class="t"><b>Large Language Models</b><small>Scale model size, data, and compute.</small></div>
+    <div class="t"><b>Foundation Models</b><small>General-purpose models adaptable across many tasks.</small></div>
+    <div class="t"><b>Multimodal Models</b><small>Language plus images, audio, video, and more.</small></div>
+    <div class="t"><b>AI Engineering</b><small>Build reliable applications around these models.</small></div>
+  </div>
+  <div class="mental"><strong>My mental model:</strong> the important shift is not just “models got bigger.” The models became broadly useful enough that an entirely new application layer grew around them.</div>
+</section>
+
+<section class="section two">
+  <div class="card">
+    <div class="kicker">Training objective</div>
+    <h2>2. Masked vs autoregressive</h2>
+    <h3>Masked language modeling</h3>
+    <p>Some tokens are hidden, and the model learns to reconstruct the missing information using surrounding context.</p>
+    <div class="flow">
+      <div class="node">The cat sat on the</div><div class="arrow">→</div><div class="node amber">[MASK]</div>
+    </div>
+    <h3 style="margin-top:18px">Autoregressive language modeling</h3>
+    <p>The model predicts the next token from the tokens that came before it.</p>
+    <div class="flow">
+      <div class="node">The cat sat on the</div><div class="arrow">→</div><div class="node green">mat</div>
+    </div>
+    <div class="mental"><strong>Memory cue:</strong> Masked = fill in the blank. Autoregressive = predict what comes next.</div>
+  </div>
+
+  <div class="card">
+    <div class="kicker">Why scale became possible</div>
+    <h2>3. Self-supervision → scaling</h2>
+    <p>Self-supervised learning creates the learning signal from the data itself rather than requiring humans to manually label every example.</p>
+    <div class="flow">
+      <div class="node">Massive raw data</div><div class="arrow">→</div><div class="node">Training signal from data</div><div class="arrow">→</div><div class="node green">Scale</div>
+    </div>
+    <ul>
+      <li>Manual labels become less of a bottleneck.</li>
+      <li>Internet-scale corpora become useful training material.</li>
+      <li>More data + more compute + larger models can be exploited together.</li>
+    </ul>
+    <div class="mental"><strong>My mental model:</strong> self-supervision did not create scaling by itself, but it removed a huge labeling constraint and made large-scale training practical.</div>
+  </div>
+</section>
+
+<section class="section card">
+  <h2>4. LLM → foundation model → multimodal foundation model</h2>
+  <div class="flow">
+    <div class="node">Language Model</div><div class="arrow">→</div>
+    <div class="node">Large Language Model</div><div class="arrow">→</div>
+    <div class="node green">Foundation-Model Paradigm</div><div class="arrow">→</div>
+    <div class="node">Multimodal Foundation Models</div>
+  </div>
+  <p><strong>Important distinction:</strong> an LLM can itself be a foundation model. “Foundation model” is the broader idea: a generally trained model that can be adapted or used across many downstream tasks. Multimodal foundation models extend that capability beyond text.</p>
+  <div class="grid" style="margin-top:14px">
+    <div class="compare"><h3>Text</h3><span class="tag">generation</span><span class="tag">summarization</span><span class="tag">QA</span><span class="tag">classification</span></div>
+    <div class="compare"><h3>Code</h3><span class="tag">generation</span><span class="tag">debugging</span><span class="tag">transformation</span></div>
+    <div class="compare"><h3>Vision</h3><span class="tag">understanding</span><span class="tag">captioning</span><span class="tag">generation</span></div>
+    <div class="compare"><h3>Multimodal</h3><span class="tag">cross-modal reasoning</span><span class="tag">image + text</span><span class="tag">audio/video</span></div>
+  </div>
+</section>
+
+<section class="section card">
+  <h2>5. Why foundation models led to AI engineering</h2>
+  <div class="flow">
+    <div class="node">Powerful pretrained models</div><div class="arrow">+</div>
+    <div class="node">Accessible APIs / serving</div><div class="arrow">+</div>
+    <div class="node">Many downstream use cases</div><div class="arrow">→</div>
+    <div class="node green">AI Engineering</div>
+  </div>
+  <p>When teams no longer need to train a model from scratch for every task, engineering effort moves toward selecting models, creating context, integrating data and tools, evaluating behavior, managing cost and latency, and operating the system in production.</p>
+  <div class="mental"><strong>Key shift:</strong> the model becomes one component of the product rather than the entire product.</div>
+</section>
+
+<section class="section card">
+  <h2>6. Foundation-model use cases</h2>
+  <div class="grid">
+    <div class="compare"><h3>Generate</h3><p>Create text, code, images, summaries, drafts, and transformations.</p></div>
+    <div class="compare"><h3>Understand</h3><p>Classify, extract, interpret, compare, and answer questions.</p></div>
+    <div class="compare"><h3>Retrieve + synthesize</h3><p>Combine models with external information to produce grounded responses.</p></div>
+    <div class="compare"><h3>Assist + automate</h3><p>Support workflows, decisions, tools, and increasingly agent-like applications.</p></div>
+  </div>
+</section>
+
+<section class="section card">
+  <h2>7. AI engineering stack</h2>
+  <div class="flow">
+    <div class="node green">Application Development</div><div class="arrow">↕</div>
+    <div class="node">Model Development</div><div class="arrow">↕</div>
+    <div class="node amber">Infrastructure</div>
+  </div>
+  <table>
+    <tr><th>Layer</th><th>What I associate with it</th></tr>
+    <tr><td><strong>Application development</strong></td><td>Prompts, context, retrieval, tools, orchestration, UX, evaluation, guardrails, monitoring.</td></tr>
+    <tr><td><strong>Model development</strong></td><td>Architecture choice, training, fine-tuning, alignment, model evaluation.</td></tr>
+    <tr><td><strong>Infrastructure</strong></td><td>Compute, storage, serving, networking, accelerators, deployment, scaling.</td></tr>
+  </table>
+  <div class="mental"><strong>Memory cue:</strong> What users experience → what the model can do → what makes the model run.</div>
+</section>
+
+<section class="section card">
+  <h2>8. AI engineering vs ML engineering</h2>
+  <table>
+    <tr><th>Question</th><th>Traditional ML engineering</th><th>AI engineering with foundation models</th></tr>
+    <tr><td><strong>Where does work begin?</strong></td><td>Often with data collection, labeling, feature work, and training.</td><td>Often with a pretrained model and an application problem.</td></tr>
+    <tr><td><strong>Model development</strong></td><td>Training and improving task-specific models is central.</td><td>Model selection, adaptation, prompting, retrieval, or fine-tuning may replace full training.</td></tr>
+    <tr><td><strong>Evaluation</strong></td><td>Often clearer task metrics: accuracy, precision, recall, AUC, RMSE, etc.</td><td>Frequently broader and messier: quality, factuality, relevance, safety, latency, cost, user preference, task success.</td></tr>
+    <tr><td><strong>System behavior</strong></td><td>Often more bounded and predictable once deployed.</td><td>Probabilistic, open-ended, and sensitive to prompts, context, model versions, and user inputs.</td></tr>
+  </table>
+  <div class="mental"><strong>What I want to remember:</strong> evaluation expands from “How good is the model?” to “How good is the entire AI application in the real task?”</div>
+</section>
+
+<section class="section two">
+  <div class="card">
+    <div class="kicker">Vocabulary I should be able to say</div>
+    <h2>9. AI inference</h2>
+    <p><strong>Inference</strong> is the stage where a trained model is used to generate a prediction or response for an input.</p>
+    <div class="flow">
+      <div class="node">Trained model</div><div class="arrow">+</div><div class="node">User input</div><div class="arrow">→</div><div class="node green">Output</div>
+    </div>
+    <p><strong>Meeting-ready phrasing:</strong> “The model quality may be fine; the current problem could be an inference-time latency, context-window, serving, or cost constraint.”</p>
+  </div>
+
+  <div class="card work">
+    <div class="kicker">Take it to work</div>
+    <h2>The system around the model</h2>
+    <div class="flow">
+      <div class="node">Context</div><div class="arrow">+</div>
+      <div class="node">Retrieval</div><div class="arrow">+</div>
+      <div class="node">Tools</div><div class="arrow">+</div>
+      <div class="node">Evaluation</div>
+    </div>
+    <p>When an AI application underperforms, don't immediately conclude that the base model is the problem. Separate model capability from context quality, retrieval, orchestration, authorization, latency, cost, observability, and evaluation design.</p>
+  </div>
+</section>
+
+<section class="section card">
+  <h2>What I should still remember in 3 months</h2>
+  <div class="recall">
+    <div class="r"><div class="num">01</div><strong>Language models evolved into LLMs through scale.</strong></div>
+    <div class="r"><div class="num">02</div><strong>Masked = reconstruct missing tokens; autoregressive = predict the next token.</strong></div>
+    <div class="r"><div class="num">03</div><strong>Self-supervision made massive unlabeled data usable and helped enable scaling.</strong></div>
+    <div class="r"><div class="num">04</div><strong>An LLM can be a foundation model; foundation models are the broader general-purpose paradigm.</strong></div>
+    <div class="r"><div class="num">05</div><strong>Multimodal foundation models extend beyond language.</strong></div>
+    <div class="r"><div class="num">06</div><strong>Foundation models created many reusable application use cases.</strong></div>
+    <div class="r"><div class="num">07</div><strong>AI engineering focuses heavily on building the application around the model.</strong></div>
+    <div class="r"><div class="num">08</div><strong>The AI engineering stack spans application development, model development, and infrastructure.</strong></div>
+    <div class="r"><div class="num">09</div><strong>Evaluation in AI engineering often measures the whole application, not just the model.</strong></div>
+    <div class="r"><div class="num">10</div><strong>Inference is using a trained model to produce outputs at run time.</strong></div>
+  </div>
+</section>
+
+<section class="section card warn">
+  <h2>Close the page and answer</h2>
+  <details><summary>1. What is the simplest difference between masked and autoregressive language modeling?</summary><p>Masked models reconstruct hidden information; autoregressive models predict the next token from prior context.</p></details>
+  <details><summary>2. Why is self-supervision so important to scale?</summary><p>Because the training signal can be derived from raw data itself, reducing dependence on manually labeled examples and allowing enormous datasets to be used.</p></details>
+  <details><summary>3. Is every foundation model an LLM?</summary><p>No. Foundation model is broader. Many LLMs are foundation models, but foundation models can also be vision, audio, or multimodal models.</p></details>
+  <details><summary>4. Why did foundation models create a need for AI engineering?</summary><p>Because broadly capable pretrained models shifted much of the work toward building, evaluating, integrating, and operating applications around the model.</p></details>
+  <details><summary>5. What are the three layers of the AI engineering stack?</summary><p>Application development, model development, and infrastructure.</p></details>
+  <details><summary>6. How is evaluation different in AI engineering?</summary><p>It often has to evaluate open-ended application behavior across quality, relevance, factuality, safety, cost, latency, and task success—not just a single model metric.</p></details>
+  <details><summary>7. What is inference?</summary><p>Using a trained model at run time to produce a prediction or generated response for an input.</p></details>
+</section>
+
+<div class="footer">AI Engineering — Chapter 1 · Memory-first hybrid notes</div>
+
+</div>
+</body>
+</html>
