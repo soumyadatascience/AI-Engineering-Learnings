@@ -53,7 +53,7 @@
 </nav>
 
 <article class="chapter-article">
-<section class="section card" id="evolution">
+<section class="section card" id="evolution" data-section-label="Concept 01 · Evolution">
   <h2>1. The evolution I should remember</h2>
   <div class="timeline">
     <div class="t"><b>Language Models</b><small>Learn patterns in sequences of language.</small></div>
@@ -65,7 +65,7 @@
   <div class="mental"><strong>My mental model:</strong> the important shift is not just “models got bigger.” The models became broadly useful enough that an entirely new application layer grew around them.</div>
 </section>
 
-<section class="section two" id="objectives">
+<section class="section two" id="objectives" data-section-label="Concepts 02–03 · Objectives and scale">
   <div class="card">
     <div class="kicker">Training objective</div>
     <h2>2. Masked vs autoregressive</h2>
@@ -98,7 +98,7 @@
   </div>
 </section>
 
-<section class="section card" id="foundation-models">
+<section class="section card" id="foundation-models" data-section-label="Concept 04 · Foundation models">
   <h2>4. LLM → foundation model → multimodal foundation model</h2>
   <div class="flow">
     <div class="node">Language Model</div><div class="arrow">→</div>
@@ -115,7 +115,7 @@
   </div>
 </section>
 
-<section class="section card" id="ai-engineering">
+<section class="section card" id="ai-engineering" data-section-label="Concept 05 · AI engineering">
   <h2>5. Why foundation models led to AI engineering</h2>
   <div class="flow">
     <div class="node">Powerful pretrained models</div><div class="arrow">+</div>
@@ -127,7 +127,7 @@
   <div class="mental"><strong>Key shift:</strong> the model becomes one component of the product rather than the entire product.</div>
 </section>
 
-<section class="section card">
+<section class="section card" data-section-label="Concept 06 · Application patterns">
   <h2>6. Foundation-model use cases</h2>
   <div class="grid">
     <div class="compare"><h3>Generate</h3><p>Create text, code, images, summaries, drafts, and transformations.</p></div>
@@ -137,7 +137,7 @@
   </div>
 </section>
 
-<section class="section card" id="engineering-stack">
+<section class="section card" id="engineering-stack" data-section-label="Concept 07 · The stack">
   <h2>7. AI engineering stack</h2>
   <div class="flow">
     <div class="node green">Application Development</div><div class="arrow">↕</div>
@@ -153,7 +153,7 @@
   <div class="mental"><strong>Memory cue:</strong> What users experience → what the model can do → what makes the model run.</div>
 </section>
 
-<section class="section card">
+<section class="section card" data-section-label="Concept 08 · Engineering practice">
   <h2>8. AI engineering vs ML engineering</h2>
   <table>
     <tr><th>Question</th><th>Traditional ML engineering</th><th>AI engineering with foundation models</th></tr>
@@ -165,7 +165,7 @@
   <div class="mental"><strong>What I want to remember:</strong> evaluation expands from “How good is the model?” to “How good is the entire AI application in the real task?”</div>
 </section>
 
-<section class="section two" id="inference">
+<section class="section two" id="inference" data-section-label="Concept 09 · Inference and systems">
   <div class="card">
     <div class="kicker">Vocabulary I should be able to say</div>
     <h2>9. AI inference</h2>
@@ -189,7 +189,7 @@
   </div>
 </section>
 
-<section class="section card" id="recall">
+<section class="section card" id="recall" data-section-label="Concept 10 · Retention">
   <h2>What I should still remember in 3 months</h2>
   <div class="recall">
     <div class="r"><div class="num">01</div><strong>Language models evolved into LLMs through scale.</strong></div>
@@ -205,7 +205,7 @@
   </div>
 </section>
 
-<section class="section card warn" id="review">
+<section class="section card warn" id="review" data-section-label="Self-check">
   <h2>Close the page and answer</h2>
   <details><summary>1. What is the simplest difference between masked and autoregressive language modeling?</summary><p>Masked models reconstruct hidden information; autoregressive models predict the next token from prior context.</p></details>
   <details><summary>2. Why is self-supervision so important to scale?</summary><p>Because the training signal can be derived from raw data itself, reducing dependence on manually labeled examples and allowing enormous datasets to be used.</p></details>
